@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Faculty &amp; Staff | All Nations International School</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: { 50:'#eef2f7', 100:'#d5e0ee', 200:'#adc1dd', 300:'#7a9ac5', 400:'#4e74ad', 500:'#2d5898', 600:'#1e3a5f', 700:'#162d4a', 800:'#0f1f33', 900:'#08111c' },
+            gold:  { 100:'#fdf3d7', 200:'#f9e29e', 300:'#f4cc5f', 400:'#edb82a', 500:'#c9a84c', 600:'#a0812a', 700:'#7a601a', 800:'#54400f', 900:'#2e2308' },
+          },
+          fontFamily: { serif: ['Playfair Display','Georgia','serif'], sans: ['Inter','system-ui','sans-serif'] },
+        }
+      }
+    }
+  </script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; }
+    .font-serif, h1, h2, h3 { font-family: 'Playfair Display', Georgia, serif; }
+    .staff-card { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    .staff-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(0,0,0,0.12); }
+    .photo-slot { background: repeating-linear-gradient(
+      45deg, #f1f5f9, #f1f5f9 8px, #e2e8f0 8px, #e2e8f0 16px
+    ); }
+    .reveal { opacity:0; transform:translateY(24px); transition: all 0.5s ease; }
+    .reveal.visible { opacity:1; transform:translateY(0); }
+    .section-divider { height: 4px; background: linear-gradient(90deg, #1e3a5f, #c9a84c, #1e3a5f); border-radius: 2px; }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+<!-- NAVBAR -->
+<nav class="bg-navy-700 sticky top-0 z-50 shadow-lg">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-18 py-3">
+      <a href="index.html" class="flex items-center gap-3">
+        <img src="logo.png" alt="All Nations International School" class="w-11 h-11 object-contain" />
+        <div class="leading-tight">
+          <div class="text-white font-serif text-base font-bold leading-none">All Nations</div>
+          <div class="text-gold-400 text-xs tracking-widest uppercase">International School</div>
+        </div>
+      </a>
+      <div class="hidden md:flex items-center gap-6">
+        <a href="index.html"           class="text-white/70 hover:text-gold-400 text-sm transition-colors">Home</a>
+        <a href="index.html#about"     class="text-white/70 hover:text-gold-400 text-sm transition-colors">About</a>
+        <a href="index.html#academics" class="text-white/70 hover:text-gold-400 text-sm transition-colors">Academics</a>
+        <span class="text-gold-400 text-sm font-semibold border-b-2 border-gold-400 pb-0.5">Faculty &amp; Staff</span>
+        <a href="index.html#contact"   class="text-white/70 hover:text-gold-400 text-sm transition-colors">Contact</a>
+        <a href="index.html#admissions" class="bg-gold-500 hover:bg-gold-400 text-navy-800 text-sm font-bold px-4 py-2 rounded-full transition-all">Apply Now</a>
+      </div>
+      <a href="index.html" class="md:hidden text-white/70 hover:text-white text-sm flex items-center gap-2">
+        <i class="fas fa-arrow-left"></i> Back
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="bg-gradient-to-br from-navy-800 to-navy-600 py-16 relative overflow-hidden">
+  <div class="absolute inset-0 opacity-5">
+    <i class="fas fa-users" style="font-size:400px; position:absolute; right:-60px; top:-60px; color:white;"></i>
+  </div>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <div class="text-center">
+      <div class="text-gold-400 text-xs font-semibold tracking-widest uppercase mb-3">Our People</div>
+      <h1 class="font-serif text-4xl md:text-5xl text-white mb-4">Faculty &amp; Staff</h1>
+      <p class="text-white/70 max-w-3xl mx-auto text-base leading-relaxed">
+        All ANIS staff and teachers work toward one goal, to produce virtuous patriotic leaders. Our teachers see their position as a calling, and work from their hearts. Our teachers do not see students merely as children, but treat all students as future leaders of our country. They are here to raise virtuous leaders, and they know the gravity of their roles and responsibilities.
+      </p>
+      <p class="text-white/50 max-w-3xl mx-auto text-base leading-relaxed mt-4">
+        All the staff and faculty at All Nations are constructed like a human body where every part is honorable and important. We are a team. We have a common goal we are running towards, and that is being faithful to Sri Lanka's future which has been entrusted to us.
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- GROUP PHOTO -->
+<section class="bg-white py-16">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-8 reveal">
+      <div class="text-gold-500 text-sm font-semibold tracking-widest uppercase mb-2">Together We Stand</div>
+      <h2 class="font-serif text-2xl md:text-3xl text-navy-700">Our Team</h2>
+    </div>
+    <!-- GROUP PHOTO SLOT — replace src with the real group photo path when available -->
+    <div class="reveal rounded-3xl overflow-hidden shadow-2xl border-4 border-navy-100">
+      <img src="Staff/group-photo.jpg.jpg" alt="All Nations International School Staff Group Photo" class="w-full h-64 sm:h-80 md:h-96 object-cover object-bottom" />
+    </div>
+  </div>
+</section>
+
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-24">
+
+  <!-- ── PRINCIPAL ── -->
+  <div class="mb-16 reveal">
+    <div class="section-divider mb-8"></div>
+    <div class="flex items-center gap-3 mb-8">
+      <div class="w-10 h-10 rounded-xl bg-navy-600 flex items-center justify-center"><i class="fas fa-user-tie text-gold-400"></i></div>
+      <h2 class="font-serif text-2xl md:text-3xl text-navy-700">Leadership</h2>
+    </div>
+    <!-- Principal card (wide) -->
+    <div class="staff-card bg-white rounded-3xl shadow-lg border border-gray-100 overflow-hidden flex flex-col md:flex-row max-w-3xl mx-auto">
+      <!-- Photo slot -->
+      <div class="w-full md:w-56 h-64 md:h-auto flex-shrink-0 overflow-hidden">
+        <img src="Staff/David.png" alt="David Ribakov" class="w-full h-full object-contain object-top bg-gray-50" />
+      </div>
+      <!-- Details -->
+      <div class="p-7 flex flex-col justify-center">
+        <div class="text-gold-500 text-xs font-semibold uppercase tracking-widest mb-1">Principal / Director</div>
+        <h3 class="font-serif text-2xl text-navy-700 mb-3">David Ribakov</h3>
+        <p class="text-gray-500 text-sm leading-relaxed mb-4">"Our teachers are more than educators, they are mentors and role models, dedicated to walking alongside our students on their journey of academic and personal growth. We strive to instill in our students the courage to lead, the curiosity to learn, and the compassion to serve."</p>
+        <div class="flex flex-wrap gap-2">
+          <span class="bg-navy-50 text-navy-600 text-xs px-3 py-1 rounded-full font-medium">Leadership</span>
+          <span class="bg-gold-100 text-gold-700 text-xs px-3 py-1 rounded-full font-medium">Vision</span>
+          <span class="bg-navy-50 text-navy-600 text-xs px-3 py-1 rounded-full font-medium">Faith-based Education</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── ACADEMIC HEADS ── -->
+  <div class="mb-16 reveal">
+    <div class="section-divider mb-8"></div>
+    <div class="flex items-center gap-3 mb-8">
+      <div class="w-10 h-10 rounded-xl bg-gold-500 flex items-center justify-center"><i class="fas fa-graduation-cap text-navy-800"></i></div>
+      <h2 class="font-serif text-2xl md:text-3xl text-navy-700">Academic Heads</h2>
+    </div>
+
+    <!-- Department heads grid -->
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+      <!-- Academic Coordinator -->
+      <div class="staff-card reveal bg-white rounded-2xl shadow-md border border-gray-100 overflow-hidden">
+        <div class="w-full aspect-square overflow-hidden relative">
+          <img src="Staff/tina.jpg.jpg" alt="Ms. Tina Wiratunga" class="w-full h-full object-contain object-top bg-gray-50" />
+          <div class="absolute top-2 right-2 bg-navy-600 text-white text-xs px-2 py-0.5 rounded-full">Coordinator</div>
+        </div>
+        <div class="p-4">
+          <div class="text-gold-500 text-xs font-semibold uppercase tracking-widest mb-1">Academic Coordinator</div>
+          <h3 class="font-serif text-lg text-navy-700">Ms. Tina Wiratunga</h3>
+          <div class="text-gray-400 text-xs mt-1">Overseeing academic standards and curriculum delivery across all divisions.</div>
+        </div>
+      </div>
+
+      <!-- Cambridge Secondary -->
+      <div class="staff-card reveal bg-white rounded-2xl shadow-md border border-gray-100 overflow-hidden">
+        <div class="w-full aspect-square overflow-hidden relative">
+          <img src="Staff/poornima.jpg.jpg" alt="Mrs. Poornima Rasangi" class="w-full h-full object-contain object-top bg-gray-50" />
+          <div class="absolute top-2 right-2 bg-navy-600 text-white text-xs px-2 py-0.5 rounded-full">Secondary</div>
+        </div>
+        <div class="p-4">
+          <div class="text-gold-500 text-xs font-semibold uppercase tracking-widest mb-1">Cambridge Curriculum</div>
+          <h3 class="font-serif text-lg text-navy-700">Mrs. Poornima Rasangi</h3>
+          <div class="text-gray-400 text-xs mt-1">Secondary School</div>
+        </div>
+      </div>
+
+      <!-- National Curriculum Secondary -->
+      <div class="staff-card reveal bg-white rounded-2xl shadow-md border border-gray-100 overflow-hidden" style="transition-delay:0.05s">
+        <div class="w-full aspect-square overflow-hidden relative">
+          <img src="Staff/kushani.jpg.jpg" alt="Mrs. Kushani Jayasinghe" class="w-full h-full object-contain object-top bg-gray-50" />
+          <div class="absolute top-2 right-2 bg-navy-600 text-white text-xs px-2 py-0.5 rounded-full">Secondary</div>
+        </div>
+        <div class="p-4">
+          <div class="text-gold-500 text-xs font-semibold uppercase tracking-widest mb-1">National Curriculum</div>
+          <h3 class="font-serif text-lg text-navy-700">Mrs. Kushani Jayasinghe</h3>
+          <div class="text-gray-400 text-xs mt-1">Secondary School</div>
+        </div>
+      </div>
+
+      <!-- Primary -->
+      <div class="staff-card reveal bg-white rounded-2xl shadow-md border border-gray-100 overflow-hidden" style="transition-delay:0.1s">
+        <div class="w-full aspect-square overflow-hidden relative">
+          <img src="Staff/dianne.jpg.jpg" alt="Mrs. Dianne Stephen" class="w-full h-full object-contain object-top bg-gray-50" />
+          <div class="absolute top-2 right-2 bg-gold-500 text-navy-800 text-xs px-2 py-0.5 rounded-full">Primary</div>
+        </div>
+        <div class="p-4">
+          <div class="text-gold-500 text-xs font-semibold uppercase tracking-widest mb-1">Primary School</div>
+          <h3 class="font-serif text-lg text-navy-700">Mrs. Dianne Stephen</h3>
+          <div class="text-gray-400 text-xs mt-1">Primary School</div>
+        </div>
+      </div>
+
+      <!-- Pre-Primary -->
+      <div class="staff-card reveal bg-white rounded-2xl shadow-md border border-gray-100 overflow-hidden" style="transition-delay:0.15s">
+        <div class="w-full aspect-square overflow-hidden relative">
+          <img src="Staff/samadhi.jpg.jpg" alt="Mrs. Samadhi Gunasekara" class="w-full h-full object-contain object-top bg-gray-50" />
+          <div class="absolute top-2 right-2 bg-pink-500 text-white text-xs px-2 py-0.5 rounded-full">Pre-Primary</div>
+        </div>
+        <div class="p-4">
+          <div class="text-gold-500 text-xs font-semibold uppercase tracking-widest mb-1">Pre-Primary School</div>
+          <h3 class="font-serif text-lg text-navy-700">Mrs. Samadhi Gunasekara</h3>
+          <div class="text-gray-400 text-xs mt-1">Pre-Primary School</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── ADMINISTRATION ── -->
+  <div class="mb-16 reveal">
+    <div class="section-divider mb-8"></div>
+    <div class="flex items-center gap-3 mb-8">
+      <div class="w-10 h-10 rounded-xl bg-navy-600 flex items-center justify-center"><i class="fas fa-briefcase text-gold-400"></i></div>
+      <h2 class="font-serif text-2xl md:text-3xl text-navy-700">Administration &amp; Support</h2>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+      <!-- HR Manager -->
+      <div class="staff-card reveal bg-white rounded-2xl shadow-md border border-gray-100 overflow-hidden">
+        <div class="w-full aspect-square overflow-hidden">
+          <img src="Staff/chandrika.jpg.jpg" alt="Mrs. Chandrika Alles" class="w-full h-full object-contain object-top bg-gray-50" />
+        </div>
+        <div class="p-4">
+          <div class="text-gold-500 text-xs font-semibold uppercase tracking-widest mb-1">HR Manager &amp; Administrator</div>
+          <h3 class="font-serif text-lg text-navy-700">Mrs. Chandrika Alles</h3>
+          <div class="text-gray-400 text-xs mt-1">Administration</div>
+        </div>
+      </div>
+
+      <!-- CFO -->
+      <div class="staff-card reveal bg-white rounded-2xl shadow-md border border-gray-100 overflow-hidden" style="transition-delay:0.05s">
+        <div class="w-full aspect-square overflow-hidden">
+          <img src="Staff/hasani.jpg.jpg" alt="Mrs. Hasani Jayarathna" class="w-full h-full object-contain object-top bg-gray-50" />
+        </div>
+        <div class="p-4">
+          <div class="text-gold-500 text-xs font-semibold uppercase tracking-widest mb-1">Chief Financial Officer</div>
+          <h3 class="font-serif text-lg text-navy-700">Mrs. Hasani Jayarathna</h3>
+          <div class="text-gray-400 text-xs mt-1">Finance</div>
+        </div>
+      </div>
+
+      <!-- Financial Advisor -->
+      <div class="staff-card reveal bg-white rounded-2xl shadow-md border border-gray-100 overflow-hidden" style="transition-delay:0.1s">
+        <div class="photo-slot w-full aspect-square flex flex-col items-center justify-center text-center gap-2 relative">
+          <div class="w-12 h-12 rounded-full bg-white/80 flex items-center justify-center shadow">
+            <i class="fas fa-user text-navy-200 text-xl"></i>
+          </div>
+          <span class="text-navy-200 text-xs">Photo coming soon</span>
+        </div>
+        <div class="p-4">
+          <div class="text-gold-500 text-xs font-semibold uppercase tracking-widest mb-1">Financial Advisor</div>
+          <h3 class="font-serif text-lg text-navy-700">Mr. Jay Yoon</h3>
+          <div class="text-gray-400 text-xs mt-1">Finance &amp; Advisory</div>
+        </div>
+      </div>
+
+      <!-- Maintenance -->
+      <div class="staff-card reveal bg-white rounded-2xl shadow-md border border-gray-100 overflow-hidden" style="transition-delay:0.15s">
+        <div class="w-full aspect-square overflow-hidden">
+          <img src="Staff/shantha.jpg.jpg" alt="Mr. W.K.S. Shantha" class="w-full h-full object-contain object-top bg-gray-50" />
+        </div>
+        <div class="p-4">
+          <div class="text-gold-500 text-xs font-semibold uppercase tracking-widest mb-1">Maintenance Officer</div>
+          <h3 class="font-serif text-lg text-navy-700">Mr. W.K.S. Shantha</h3>
+          <div class="text-gray-400 text-xs mt-1">Facilities &amp; Maintenance</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- JOIN US CTA -->
+  <div class="reveal bg-gradient-to-br from-navy-600 to-navy-800 rounded-3xl p-8 md:p-12 text-center">
+    <i class="fas fa-hands-helping text-gold-400 text-4xl mb-4 block"></i>
+    <h2 class="font-serif text-2xl md:text-3xl text-white mb-3">Join Our Team</h2>
+    <p class="text-white/60 text-sm max-w-lg mx-auto mb-6">We are always looking for passionate, qualified educators and support staff who share our vision of raising virtuous leaders. If you'd like to be part of the All Nations family, get in touch.</p>
+    <a href="index.html#contact" class="inline-flex items-center gap-2 bg-gold-500 hover:bg-gold-400 text-navy-800 font-bold px-8 py-3.5 rounded-full transition-all text-sm hover:-translate-y-0.5 shadow-lg">
+      Contact Us <i class="fas fa-arrow-right"></i>
+    </a>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer class="bg-navy-800 py-8">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4">
+    <div class="flex items-center gap-3">
+      <img src="logo.png" alt="All Nations International School" class="w-9 h-9 object-contain" />
+      <div>
+        <div class="text-white font-serif text-sm font-bold leading-none">All Nations International School</div>
+        <div class="text-gold-400 text-xs">Ganemulla, Sri Lanka</div>
+      </div>
+    </div>
+    <div class="text-white/30 text-xs">&copy; 2025 All Nations International School. All rights reserved.</div>
+    <a href="index.html" class="text-gold-400 hover:text-gold-300 text-sm flex items-center gap-1 transition-colors">
+      <i class="fas fa-arrow-left text-xs"></i> Back to Main Site
+    </a>
+  </div>
+</footer>
+
+<!-- WhatsApp -->
+<a href="https://wa.me/94112243535" target="_blank"
+   class="fixed bottom-6 right-6 w-13 h-13 w-14 h-14 bg-green-500 hover:bg-green-600 text-white rounded-full flex items-center justify-center shadow-xl z-50 transition-all hover:scale-110">
+  <i class="fab fa-whatsapp text-2xl"></i>
+</a>
+
+<script>
+var revealObs = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(function(el) { revealObs.observe(el); });
+</script>
+</body>
+</html>
