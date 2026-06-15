@@ -1,0 +1,1301 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>All Nations International School | Ganemulla, Sri Lanka</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: { 50:'#eef2f7', 100:'#d5e0ee', 200:'#adc1dd', 300:'#7a9ac5', 400:'#4e74ad', 500:'#2d5898', 600:'#1e3a5f', 700:'#162d4a', 800:'#0f1f33', 900:'#08111c' },
+            gold:  { 100:'#fdf3d7', 200:'#f9e29e', 300:'#f4cc5f', 400:'#edb82a', 500:'#c9a84c', 600:'#a0812a', 700:'#7a601a', 800:'#54400f', 900:'#2e2308' },
+          },
+          fontFamily: { serif: ['Playfair Display','Georgia','serif'], sans: ['Inter','system-ui','sans-serif'] },
+        }
+      }
+    }
+  </script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; }
+    h1,h2,.font-serif { font-family: 'Playfair Display', Georgia, serif; }
+
+    /* Navbar */
+    #navbar { transition: all 0.3s ease; }
+    #navbar.scrolled { background: #1e3a5f !important; box-shadow: 0 4px 20px rgba(0,0,0,0.3); }
+
+    /* Hero */
+    .hero-bg {
+      background: linear-gradient(135deg, #0f1f33 0%, #1e3a5f 40%, #2d5898 70%, #162d4a 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-bg::before {
+      content:'';
+      position:absolute; inset:0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c9a84c' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    .hero-float { animation: float 6s ease-in-out infinite; }
+    @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)} }
+    .hero-badge { animation: pulse-badge 2s ease-in-out infinite; }
+    @keyframes pulse-badge { 0%,100%{box-shadow:0 0 0 0 rgba(201,168,76,0.4)} 50%{box-shadow:0 0 0 12px rgba(201,168,76,0)} }
+
+    /* Counters */
+    .stat-card { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    .stat-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.12); }
+
+    /* Program cards */
+    .program-card { transition: all 0.35s ease; cursor:pointer; }
+    .program-card:hover { transform: translateY(-6px); }
+    .program-card:hover .program-icon { background: #c9a84c; color: #1e3a5f; }
+
+    /* Facility cards */
+    .facility-card { transition: transform 0.3s; }
+    .facility-card:hover { transform: scale(1.03); }
+
+    /* Testimonial slider */
+    .testimonial-track { display:flex; transition: transform 0.5s ease; }
+
+    /* Timeline */
+    .timeline-item { position:relative; padding-left:2.5rem; }
+    .timeline-item::before { content:''; position:absolute; left:0.6rem; top:1.5rem; bottom:-1rem; width:2px; background:#e2e8f0; }
+    .timeline-item:last-child::before { display:none; }
+    .timeline-dot { position:absolute; left:0; top:0.4rem; width:1.4rem; height:1.4rem; border-radius:50%; background:#c9a84c; border:3px solid #fff; box-shadow:0 0 0 3px #c9a84c33; }
+
+    /* Form steps */
+    .form-step { display:none; }
+    .form-step.active { display:block; animation: fadeIn 0.4s ease; }
+    @keyframes fadeIn { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
+
+    /* Step indicator */
+    .step-dot { transition: all 0.3s; }
+    .step-dot.active { background:#c9a84c; color:#1e3a5f; font-weight:700; }
+    .step-dot.done { background:#1e3a5f; color:#fff; }
+
+    /* Smooth reveal */
+    .reveal { opacity:0; transform:translateY(30px); transition: all 0.6s ease; }
+    .reveal.visible { opacity:1; transform:translateY(0); }
+
+    /* Accordion */
+    .faq-answer { max-height:0; overflow:hidden; transition:max-height 0.4s ease; }
+    .faq-answer.open { max-height:500px; }
+
+    /* Mobile menu */
+    #mobile-menu { transition: all 0.3s ease; }
+
+    /* WhatsApp */
+    .wa-btn { animation: wa-pulse 2s infinite; }
+    @keyframes wa-pulse { 0%,100%{box-shadow:0 0 0 0 rgba(37,211,102,0.5)} 50%{box-shadow:0 0 0 14px rgba(37,211,102,0)} }
+
+    /* Gradient text */
+    .gradient-text { background: linear-gradient(135deg, #c9a84c, #edb82a); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+
+    /* Section divider */
+    .wave-divider { line-height:0; }
+    .wave-divider svg { display:block; }
+
+    /* Nav link underline */
+    .nav-link { position:relative; }
+    .nav-link::after { content:''; position:absolute; bottom:-2px; left:0; width:0; height:2px; background:#c9a84c; transition:width 0.3s; }
+    .nav-link:hover::after { width:100%; }
+
+    /* Gallery grid */
+    .gallery-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:0.75rem; }
+    @media(max-width:640px){ .gallery-grid { grid-template-columns:repeat(2,1fr); } }
+    .gallery-item { border-radius:12px; overflow:hidden; aspect-ratio:4/3; position:relative; cursor:pointer; }
+    .gallery-item::after { content:''; position:absolute; inset:0; background:rgba(30,58,95,0); transition:background 0.3s; }
+    .gallery-item:hover::after { background:rgba(30,58,95,0.45); }
+    .gallery-item img { width:100%; height:100%; object-fit:cover; transition:transform 0.4s; }
+    .gallery-item:hover img { transform:scale(1.05); }
+
+    /* Back to top */
+    #back-to-top { transition: all 0.3s; opacity:0; pointer-events:none; }
+    #back-to-top.show { opacity:1; pointer-events:all; }
+  </style>
+</head>
+<body class="bg-white text-gray-800">
+
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• NAVBAR â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-50 bg-transparent">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-20">
+
+      <!-- Logo -->
+      <a href="#home" class="flex items-center gap-3">
+        <img src="logo.png" alt="All Nations International School Logo" class="w-12 h-12 object-contain drop-shadow-lg" />
+        <div class="leading-tight">
+          <div class="text-white font-serif text-lg font-bold leading-none">All Nations</div>
+          <div class="text-gold-400 text-xs tracking-widest uppercase">International School</div>
+        </div>
+      </a>
+
+      <!-- Desktop Nav -->
+      <div class="hidden lg:flex items-center gap-7">
+        <a href="#home"       class="nav-link text-white/90 hover:text-gold-400 text-sm font-medium transition-colors">Home</a>
+        <a href="#about"      class="nav-link text-white/90 hover:text-gold-400 text-sm font-medium transition-colors">About</a>
+        <a href="#academics"  class="nav-link text-white/90 hover:text-gold-400 text-sm font-medium transition-colors">Academics</a>
+        <a href="#facilities" class="nav-link text-white/90 hover:text-gold-400 text-sm font-medium transition-colors">Facilities</a>
+        <a href="#gallery"    class="nav-link text-white/90 hover:text-gold-400 text-sm font-medium transition-colors">Gallery</a>
+        <a href="#news"       class="nav-link text-white/90 hover:text-gold-400 text-sm font-medium transition-colors">News</a>
+        <a href="#contact"    class="nav-link text-white/90 hover:text-gold-400 text-sm font-medium transition-colors">Contact</a>
+        <a href="#admissions" class="bg-gold-500 hover:bg-gold-400 text-navy-800 text-sm font-bold px-5 py-2.5 rounded-full transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5">
+          Apply Now
+        </a>
+      </div>
+
+      <!-- Mobile hamburger -->
+      <button id="menu-toggle" class="lg:hidden text-white text-2xl focus:outline-none">
+        <i class="fas fa-bars" id="menu-icon"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="lg:hidden hidden bg-navy-700 border-t border-navy-600 px-4 py-4 space-y-2">
+    <a href="#home"       class="block text-white/90 hover:text-gold-400 py-2 text-sm" onclick="closeMobileMenu()">Home</a>
+    <a href="#about"      class="block text-white/90 hover:text-gold-400 py-2 text-sm" onclick="closeMobileMenu()">About</a>
+    <a href="#academics"  class="block text-white/90 hover:text-gold-400 py-2 text-sm" onclick="closeMobileMenu()">Academics</a>
+    <a href="#facilities" class="block text-white/90 hover:text-gold-400 py-2 text-sm" onclick="closeMobileMenu()">Facilities</a>
+    <a href="#gallery"    class="block text-white/90 hover:text-gold-400 py-2 text-sm" onclick="closeMobileMenu()">Gallery</a>
+    <a href="#news"       class="block text-white/90 hover:text-gold-400 py-2 text-sm" onclick="closeMobileMenu()">News</a>
+    <a href="#contact"    class="block text-white/90 hover:text-gold-400 py-2 text-sm" onclick="closeMobileMenu()">Contact</a>
+    <a href="#admissions" class="block bg-gold-500 text-navy-800 text-sm font-bold px-4 py-2 rounded-full text-center mt-2" onclick="closeMobileMenu()">Apply Now</a>
+  </div>
+</nav>
+
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• HERO â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+<section id="home" class="hero-bg min-h-screen flex items-center pt-20">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 w-full">
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+
+      <!-- Left text -->
+      <div>
+        <div class="inline-flex items-center gap-2 bg-gold-500/20 border border-gold-500/40 text-gold-300 text-xs font-semibold px-4 py-2 rounded-full mb-6 tracking-wider uppercase">
+          <i class="fas fa-star text-gold-400"></i>
+          Cambridge Curriculum Â· Ganemulla, Sri Lanka
+        </div>
+        <h1 class="font-serif text-3xl sm:text-4xl lg:text-6xl text-white leading-tight mb-6">
+          Where Young Minds <span class="gradient-text">Flourish</span> & Leaders Are Shaped
+        </h1>
+        <p class="text-white/70 text-base lg:text-lg leading-relaxed mb-8 max-w-lg">
+          All Nations International School blends educational traditions from Sri Lanka, the UK, South Korea, and the US â€” nurturing students from Pre-Primary through Secondary with Christian values and world-class standards.
+        </p>
+        <div class="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4">
+          <a href="#admissions" class="bg-gold-500 hover:bg-gold-400 text-navy-800 font-bold px-8 py-4 rounded-full text-sm transition-all shadow-xl hover:shadow-gold-500/30 hover:-translate-y-1">
+            Apply for 2025 / 2026 <i class="fas fa-arrow-right ml-2"></i>
+          </a>
+          <a href="#about" class="border border-white/30 hover:border-gold-400 text-white hover:text-gold-400 font-medium px-8 py-4 rounded-full text-sm transition-all">
+            Discover Our School
+          </a>
+        </div>
+        <!-- Trust badges -->
+        <div class="flex flex-wrap gap-6 mt-10">
+          <div class="flex items-center gap-2 text-white/60 text-sm">
+            <i class="fas fa-check-circle text-gold-400"></i> Cambridge Certified
+          </div>
+          <div class="flex items-center gap-2 text-white/60 text-sm">
+            <i class="fas fa-check-circle text-gold-400"></i> Christian Values
+          </div>
+          <div class="flex items-center gap-2 text-white/60 text-sm">
+            <i class="fas fa-check-circle text-gold-400"></i> Est. 2005
+          </div>
+        </div>
+      </div>
+
+      <!-- Right card -->
+      <div class="hidden lg:flex justify-center">
+        <div class="relative">
+          <!-- Main card -->
+          <div class="hero-float bg-white/10 backdrop-blur-md border border-white/20 rounded-3xl p-8 w-80 shadow-2xl">
+            <div class="text-center mb-6">
+              <div class="w-20 h-20 rounded-full bg-white/10 border-2 border-gold-400/40 flex items-center justify-center mx-auto mb-3 p-1">
+                <img src="logo.png" alt="All Nations Logo" class="w-full h-full object-contain drop-shadow" />
+              </div>
+              <div class="font-serif text-white text-xl">2025 / 2026</div>
+              <div class="text-gold-400 text-sm">Admissions Open</div>
+            </div>
+            <div class="space-y-3">
+              <div class="flex items-center gap-3 bg-white/10 rounded-xl p-3">
+                <i class="fas fa-child text-gold-400 w-5 text-center"></i>
+                <div>
+                  <div class="text-white text-sm font-medium">Pre-Primary</div>
+                  <div class="text-white/50 text-xs">Ages 3 â€“ 5</div>
+                </div>
+              </div>
+              <div class="flex items-center gap-3 bg-white/10 rounded-xl p-3">
+                <i class="fas fa-book-open text-gold-400 w-5 text-center"></i>
+                <div>
+                  <div class="text-white text-sm font-medium">Primary</div>
+                  <div class="text-white/50 text-xs">Grades 1 â€“ 5</div>
+                </div>
+              </div>
+              <div class="flex items-center gap-3 bg-white/10 rounded-xl p-3">
+                <i class="fas fa-flask text-gold-400 w-5 text-center"></i>
+                <div>
+                  <div class="text-white text-sm font-medium">Secondary</div>
+                  <div class="text-white/50 text-xs">Grades 6 â€“ 11 (O/L)</div>
+                </div>
+              </div>
+            </div>
+            <a href="#admissions" class="block mt-5 bg-gold-500 hover:bg-gold-400 text-navy-800 font-bold text-sm text-center py-3 rounded-xl transition-all hero-badge">
+              Enquire Now
+            </a>
+          </div>
+
+          <!-- Floating badges -->
+          <div class="absolute -top-4 -right-4 bg-green-500 text-white text-xs font-bold px-3 py-2 rounded-full shadow-lg">
+            <i class="fas fa-circle text-xs mr-1"></i> Enrolments Open
+          </div>
+          <div class="absolute -bottom-4 -left-4 bg-navy-600 border border-gold-500/30 text-white text-xs px-4 py-3 rounded-2xl shadow-lg">
+            <div class="font-bold text-gold-400">98%</div>
+            <div class="text-white/60">Pass Rate 2024</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Wave bottom -->
+  <div class="wave-divider absolute bottom-0 left-0 right-0">
+    <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <path d="M0,40 C360,80 1080,0 1440,40 L1440,60 L0,60 Z" fill="#ffffff"/>
+    </svg>
+  </div>
+</section>
+
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• STATS â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+<section class="bg-white py-16 relative z-10">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="stat-card text-center bg-navy-50 rounded-2xl p-6 border border-navy-100">
+        <div class="font-serif text-3xl sm:text-4xl text-navy-600 font-bold counter" data-target="750">0</div>
+        <div class="text-gray-500 text-sm mt-1">Students Enrolled</div>
+      </div>
+      <div class="stat-card text-center bg-gold-100 rounded-2xl p-6 border border-gold-200">
+        <div class="font-serif text-3xl sm:text-4xl text-navy-600 font-bold counter" data-target="20">0</div>
+        <div class="text-gray-500 text-sm mt-1">Years of Excellence</div>
+      </div>
+      <div class="stat-card text-center bg-navy-50 rounded-2xl p-6 border border-navy-100">
+        <div class="font-serif text-3xl sm:text-4xl text-navy-600 font-bold"><span class="counter" data-target="98">0</span>%</div>
+        <div class="text-gray-500 text-sm mt-1">Cambridge Pass Rate</div>
+      </div>
+      <div class="stat-card text-center bg-gold-100 rounded-2xl p-6 border border-gold-200">
+        <div class="font-serif text-3xl sm:text-4xl text-navy-600 font-bold counter" data-target="65">0</div>
+        <div class="text-gray-500 text-sm mt-1">Qualified Teachers</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• ABOUT â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+<section id="about" class="py-24 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+
+      <!-- Left visual -->
+      <div class="reveal relative">
+        <!-- Big image block -->
+        <div class="rounded-3xl overflow-hidden bg-gradient-to-br from-navy-600 to-navy-800 h-96 flex items-center justify-center shadow-2xl">
+          <div class="text-center text-white p-10">
+            <i class="fas fa-school text-gold-400 text-7xl mb-4 block"></i>
+            <div class="font-serif text-3xl mb-2">Est. 2005</div>
+            <div class="text-white/60">Ganemulla, Sri Lanka</div>
+          </div>
+        </div>
+        <!-- Overlay card -->
+        <div class="absolute -bottom-4 -right-4 sm:-bottom-6 sm:-right-6 bg-gold-500 text-navy-800 rounded-2xl p-4 shadow-xl max-w-[180px]">
+          <div class="font-bold text-xl font-serif">4 Nations</div>
+          <div class="text-navy-700 text-xs mt-1">Educational traditions blended into one world-class curriculum</div>
+        </div>
+        <!-- Floating flag icons -->
+        <div class="absolute -top-3 -left-3 sm:-top-4 sm:-left-4 bg-white rounded-xl shadow-lg p-2 sm:p-3 flex gap-1 sm:gap-2 text-lg sm:text-2xl">
+          ðŸ‡±ðŸ‡° ðŸ‡¬ðŸ‡§ ðŸ‡°ðŸ‡· ðŸ‡ºðŸ‡¸
+        </div>
+      </div>
+
+      <!-- Right text -->
+      <div class="reveal">
+        <div class="text-gold-500 text-sm font-semibold tracking-widest uppercase mb-3">Who We Are</div>
+        <h2 class="font-serif text-4xl text-navy-700 mb-6 leading-tight">A School Built on Faith, Excellence & Community</h2>
+        <p class="text-gray-600 leading-relaxed mb-5">
+          All Nations International School was founded with a bold vision â€” to create an educational institution in Sri Lanka that draws the best from global teaching traditions while staying rooted in Christian values and love for community.
+        </p>
+        <p class="text-gray-600 leading-relaxed mb-8">
+          Our students don't just pass exams. They graduate as confident, compassionate leaders ready to contribute to Sri Lanka and the world.
+        </p>
+
+        <!-- 3 pillars -->
+        <div class="space-y-4">
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-xl bg-navy-50 flex items-center justify-center flex-shrink-0">
+              <i class="fas fa-cross text-navy-600"></i>
+            </div>
+            <div>
+              <div class="font-semibold text-navy-700">Christian Values</div>
+              <div class="text-gray-500 text-sm">Character formation rooted in faith, integrity and service.</div>
+            </div>
+          </div>
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-xl bg-gold-100 flex items-center justify-center flex-shrink-0">
+              <i class="fas fa-globe text-gold-600"></i>
+            </div>
+            <div>
+              <div class="font-semibold text-navy-700">International Curriculum</div>
+              <div class="text-gray-500 text-sm">Cambridge-aligned academics with global best practices.</div>
+            </div>
+          </div>
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-xl bg-navy-50 flex items-center justify-center flex-shrink-0">
+              <i class="fas fa-heart text-navy-600"></i>
+            </div>
+            <div>
+              <div class="font-semibold text-navy-700">Holistic Development</div>
+              <div class="text-gray-500 text-sm">Sports, arts, music and leadership alongside academics.</div>
+            </div>
+          </div>
+        </div>
+
+        <a href="#academics" class="inline-flex items-center gap-2 mt-8 text-navy-600 font-semibold hover:text-gold-500 transition-colors">
+          Explore Our Programmes <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• PRINCIPAL'S MESSAGE â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+<section class="py-20 bg-navy-600 relative overflow-hidden">
+  <div class="absolute inset-0 opacity-5">
+    <i class="fas fa-quote-left text-white" style="font-size:300px;position:absolute;top:-40px;left:-40px;"></i>
+  </div>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+    <div class="reveal">
+      <div class="w-20 h-20 rounded-full bg-gold-500/20 border-2 border-gold-400 flex items-center justify-center mx-auto mb-6">
+        <i class="fas fa-user-tie text-gold-400 text-3xl"></i>
+      </div>
+      <blockquote class="font-serif text-white text-xl sm:text-2xl lg:text-3xl leading-relaxed mb-6 italic">
+        "Our goal is not merely to educate minds, but to shape hearts â€” students who will lead with wisdom, serve with humility, and excel with grace in whatever field they choose."
+      </blockquote>
+      <div class="text-gold-400 font-semibold">Principal, All Nations International School</div>
+      <div class="text-white/50 text-sm mt-1">20+ Years in Education Leadership</div>
+    </div>
+  </div>
+</section>
+
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• ACADEMICS â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+<section id="academics" class="py-24 bg-gray-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16 reveal">
+      <div class="text-gold-500 text-sm font-semibold tracking-widest uppercase mb-3">Academics</div>
+      <h2 class="font-serif text-3xl md:text-4xl text-navy-700 mb-4">Programmes We Offer</h2>
+      <p class="text-gray-500 max-w-xl mx-auto">From a child's very first classroom to their O-Level examinations, we provide world-class education at every stage.</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+
+      <!-- Pre-Primary -->
+      <div class="program-card bg-white rounded-3xl p-8 shadow-md border border-gray-100 reveal">
+        <div class="program-icon w-14 h-14 rounded-2xl bg-pink-50 flex items-center justify-center mb-5 transition-all duration-300">
+          <i class="fas fa-child text-pink-500 text-2xl"></i>
+        </div>
+        <div class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Ages 3 â€“ 5</div>
+        <h3 class="font-serif text-2xl text-navy-700 mb-3">Pre-Primary</h3>
+        <p class="text-gray-500 text-sm leading-relaxed mb-5">A nurturing, play-based environment where curiosity is celebrated. Children develop language, numeracy and social skills through creative exploration.</p>
+        <ul class="space-y-2 text-sm text-gray-600">
+          <li class="flex items-center gap-2"><i class="fas fa-check text-gold-500 text-xs"></i> Phonics & Early Reading</li>
+          <li class="flex items-center gap-2"><i class="fas fa-check text-gold-500 text-xs"></i> Montessori-inspired Learning</li>
+          <li class="flex items-center gap-2"><i class="fas fa-check text-gold-500 text-xs"></i> Music, Art & Movement</li>
+          <li class="flex items-center gap-2"><i class="fas fa-check text-gold-500 text-xs"></i> Character Education</li>
+        </ul>
+        <div class="mt-6 pt-5 border-t border-gray-100 flex justify-between items-center">
+          <span class="text-xs text-gray-400">Small class sizes</span>
+          <a href="#admissions" class="text-navy-600 hover:text-gold-500 text-sm font-semibold transition-colors">Enrol â†’</a>
+        </div>
+      </div>
+
+      <!-- Primary -->
+      <div class="program-card bg-navy-600 rounded-3xl p-8 shadow-xl reveal" style="transition-delay:0.1s">
+        <div class="program-icon w-14 h-14 rounded-2xl bg-white/10 flex items-center justify-center mb-5 transition-all duration-300">
+          <i class="fas fa-book-open text-gold-400 text-2xl"></i>
+        </div>
+        <div class="text-xs font-semibold text-gold-400/70 uppercase tracking-wider mb-2">Grades 1 â€“ 5</div>
+        <h3 class="font-serif text-2xl text-white mb-3">Primary</h3>
+        <p class="text-white/70 text-sm leading-relaxed mb-5">Building strong academic foundations through the Cambridge Primary framework. Students develop critical thinking, reading fluency and mathematical reasoning.</p>
+        <ul class="space-y-2 text-sm text-white/80">
+          <li class="flex items-center gap-2"><i class="fas fa-check text-gold-400 text-xs"></i> Cambridge Primary Curriculum</li>
+          <li class="flex items-center gap-2"><i class="fas fa-check text-gold-400 text-xs"></i> English, Sinhala & Tamil</li>
+          <li class="flex items-center gap-2"><i class="fas fa-check text-gold-400 text-xs"></i> Science & Technology Labs</li>
+          <li class="flex items-center gap-2"><i class="fas fa-check text-gold-400 text-xs"></i> Sports & Arts Clubs</li>
+        </ul>
+        <div class="mt-6 pt-5 border-t border-white/10 flex justify-between items-center">
+          <span class="text-xs text-white/40">Most popular programme</span>
+          <a href="#admissions" class="text-gold-400 hover:text-gold-300 text-sm font-semibold transition-colors">Enrol â†’</a>
+        </div>
+      </div>
+
+      <!-- Secondary -->
+      <div class="program-card bg-white rounded-3xl p-8 shadow-md border border-gray-100 reveal" style="transition-delay:0.2s">
+        <div class="program-icon w-14 h-14 rounded-2xl bg-blue-50 flex items-center justify-center mb-5 transition-all duration-300">
+          <i class="fas fa-flask text-blue-500 text-2xl"></i>
+        </div>
+        <div class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Grades 6 â€“ 11</div>
+        <h3 class="font-serif text-2xl text-navy-700 mb-3">Secondary</h3>
+        <p class="text-gray-500 text-sm leading-relaxed mb-5">Preparing students for Cambridge O-Level examinations with rigorous academics, specialist teachers, and comprehensive subject choices.</p>
+        <ul class="space-y-2 text-sm text-gray-600">
+          <li class="flex items-center gap-2"><i class="fas fa-check text-gold-500 text-xs"></i> Cambridge IGCSE / O-Level</li>
+          <li class="flex items-center gap-2"><i class="fas fa-check text-gold-500 text-xs"></i> Sciences, Commerce & Arts</li>
+          <li class="flex items-center gap-2"><i class="fas fa-check text-gold-500 text-xs"></i> University Counselling</li>
+          <li class="flex items-center gap-2"><i class="fas fa-check text-gold-500 text-xs"></i> Leadership Development</li>
+        </ul>
+        <div class="mt-6 pt-5 border-t border-gray-100 flex justify-between items-center">
+          <span class="text-xs text-gray-400">98% pass rate (2024)</span>
+          <a href="#admissions" class="text-navy-600 hover:text-gold-500 text-sm font-semibold transition-colors">Enrol â†’</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• FACILITIES â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+<section id="facilities" class="py-24 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16 reveal">
+      <div class="text-gold-500 text-sm font-semibold tracking-widest uppercase mb-3">Campus Life</div>
+      <h2 class="font-serif text-3xl md:text-4xl text-navy-700 mb-4">World-Class Facilities</h2>
+      <p class="text-gray-500 max-w-xl mx-auto">Our campus provides every resource students need to learn, grow and thrive â€” both inside and outside the classroom.</p>
+    </div>
+
+    <div class="grid grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="facility-card group rounded-2xl overflow-hidden bg-gradient-to-br from-blue-50 to-blue-100 p-6 border border-blue-100 reveal">
+        <div class="w-12 h-12 rounded-xl bg-blue-500 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+          <i class="fas fa-swimming-pool text-white text-xl"></i>
+        </div>
+        <h3 class="font-semibold text-navy-700 mb-2">Swimming Pool</h3>
+        <p class="text-gray-500 text-sm">Olympic-standard pool with qualified swimming coaches for all age groups.</p>
+      </div>
+
+      <div class="facility-card group rounded-2xl overflow-hidden bg-gradient-to-br from-green-50 to-green-100 p-6 border border-green-100 reveal" style="transition-delay:0.05s">
+        <div class="w-12 h-12 rounded-xl bg-green-500 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+          <i class="fas fa-flask text-white text-xl"></i>
+        </div>
+        <h3 class="font-semibold text-navy-700 mb-2">Science Laboratories</h3>
+        <p class="text-gray-500 text-sm">Fully equipped Physics, Chemistry and Biology labs for hands-on learning.</p>
+      </div>
+
+      <div class="facility-card group rounded-2xl overflow-hidden bg-gradient-to-br from-amber-50 to-amber-100 p-6 border border-amber-100 reveal" style="transition-delay:0.1s">
+        <div class="w-12 h-12 rounded-xl bg-amber-500 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+          <i class="fas fa-book text-white text-xl"></i>
+        </div>
+        <h3 class="font-semibold text-navy-700 mb-2">Library & Resource Centre</h3>
+        <p class="text-gray-500 text-sm">Over 5,000 titles including digital resources, e-books and research databases.</p>
+      </div>
+
+      <div class="facility-card group rounded-2xl overflow-hidden bg-gradient-to-br from-purple-50 to-purple-100 p-6 border border-purple-100 reveal" style="transition-delay:0.15s">
+        <div class="w-12 h-12 rounded-xl bg-purple-500 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+          <i class="fas fa-theater-masks text-white text-xl"></i>
+        </div>
+        <h3 class="font-semibold text-navy-700 mb-2">Auditorium</h3>
+        <p class="text-gray-500 text-sm">400-seat auditorium for performances, assemblies, and guest lectures.</p>
+      </div>
+
+      <div class="facility-card group rounded-2xl overflow-hidden bg-gradient-to-br from-red-50 to-red-100 p-6 border border-red-100 reveal" style="transition-delay:0.2s">
+        <div class="w-12 h-12 rounded-xl bg-red-500 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+          <i class="fas fa-futbol text-white text-xl"></i>
+        </div>
+        <h3 class="font-semibold text-navy-700 mb-2">Sports Grounds</h3>
+        <p class="text-gray-500 text-sm">Cricket, football, basketball and athletics facilities on campus.</p>
+      </div>
+
+      <div class="facility-card group rounded-2xl overflow-hidden bg-gradient-to-br from-navy-50 to-navy-100 p-6 border border-navy-100 reveal" style="transition-delay:0.25s">
+        <div class="w-12 h-12 rounded-xl bg-navy-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+          <i class="fas fa-laptop text-white text-xl"></i>
+        </div>
+        <h3 class="font-semibold text-navy-700 mb-2">IT & Computer Lab</h3>
+        <p class="text-gray-500 text-sm">Modern computing suites with high-speed internet and coding curriculum.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• GALLERY â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+<section id="gallery" class="py-24 bg-gray-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12 reveal">
+      <div class="text-gold-500 text-sm font-semibold tracking-widest uppercase mb-3">Gallery</div>
+      <h2 class="font-serif text-3xl md:text-4xl text-navy-700 mb-4">Life at All Nations</h2>
+      <p class="text-gray-500 max-w-xl mx-auto">A glimpse into the vibrant community, events and everyday moments that make our school special.</p>
+    </div>
+
+    <div class="gallery-grid reveal">
+      <!-- Gallery items with gradient backgrounds as image placeholders -->
+      <div class="gallery-item" style="background:linear-gradient(135deg,#1e3a5f,#2d5898)">
+        <div class="absolute inset-0 flex items-center justify-center text-white/80 text-center p-4">
+          <div><i class="fas fa-graduation-cap text-4xl mb-2 text-gold-400 block"></i><div class="text-xs">Graduation Day 2024</div></div>
+        </div>
+      </div>
+      <div class="gallery-item" style="background:linear-gradient(135deg,#166534,#22c55e)">
+        <div class="absolute inset-0 flex items-center justify-center text-white/80 text-center p-4">
+          <div><i class="fas fa-futbol text-4xl mb-2 text-white block"></i><div class="text-xs">Sports Day 2024</div></div>
+        </div>
+      </div>
+      <div class="gallery-item" style="background:linear-gradient(135deg,#92400e,#f59e0b)">
+        <div class="absolute inset-0 flex items-center justify-center text-white/80 text-center p-4">
+          <div><i class="fas fa-flask text-4xl mb-2 text-white block"></i><div class="text-xs">Science Fair</div></div>
+        </div>
+      </div>
+      <div class="gallery-item" style="background:linear-gradient(135deg,#7c3aed,#a78bfa)">
+        <div class="absolute inset-0 flex items-center justify-center text-white/80 text-center p-4">
+          <div><i class="fas fa-music text-4xl mb-2 text-white block"></i><div class="text-xs">Annual Concert</div></div>
+        </div>
+      </div>
+      <div class="gallery-item" style="background:linear-gradient(135deg,#0e7490,#06b6d4)">
+        <div class="absolute inset-0 flex items-center justify-center text-white/80 text-center p-4">
+          <div><i class="fas fa-swimming-pool text-4xl mb-2 text-white block"></i><div class="text-xs">Swimming Gala</div></div>
+        </div>
+      </div>
+      <div class="gallery-item" style="background:linear-gradient(135deg,#9f1239,#f43f5e)">
+        <div class="absolute inset-0 flex items-center justify-center text-white/80 text-center p-4">
+          <div><i class="fas fa-palette text-4xl mb-2 text-white block"></i><div class="text-xs">Art Exhibition</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="text-center mt-8 reveal">
+      <button class="border-2 border-navy-600 text-navy-600 hover:bg-navy-600 hover:text-white font-semibold px-8 py-3 rounded-full transition-all text-sm">
+        View Full Gallery <i class="fas fa-images ml-2"></i>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• TESTIMONIALS â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+<section class="py-24 bg-navy-600 overflow-hidden">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12 reveal">
+      <div class="text-gold-400 text-sm font-semibold tracking-widest uppercase mb-3">Testimonials</div>
+      <h2 class="font-serif text-3xl md:text-4xl text-white mb-4">What Our Families Say</h2>
+    </div>
+
+    <div class="overflow-hidden">
+      <div class="testimonial-track" id="testimonialTrack">
+        <!-- T1 -->
+        <div class="min-w-full px-4">
+          <div class="bg-white/10 backdrop-blur border border-white/10 rounded-3xl p-7 h-full">
+            <div class="flex text-gold-400 text-sm mb-4">â˜…â˜…â˜…â˜…â˜…</div>
+            <p class="text-white/80 text-sm leading-relaxed mb-5">"Moving our children to All Nations was the best decision we ever made. The teachers are passionate, the facilities are excellent, and our kids have grown so much in confidence and character."</p>
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-gold-500/30 flex items-center justify-center text-gold-400 font-bold">P</div>
+              <div>
+                <div class="text-white font-semibold text-sm">Priya Fernando</div>
+                <div class="text-white/40 text-xs">Parent of Grade 4 & Grade 8 students</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- T2 -->
+        <div class="min-w-full px-4">
+          <div class="bg-white/10 backdrop-blur border border-white/10 rounded-3xl p-7 h-full">
+            <div class="flex text-gold-400 text-sm mb-4">â˜…â˜…â˜…â˜…â˜…</div>
+            <p class="text-white/80 text-sm leading-relaxed mb-5">"I scored 9 A's at O-Level and got a scholarship to study in the UK. All Nations prepared me not just academically but also as a person. I'll always be grateful."</p>
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-gold-500/30 flex items-center justify-center text-gold-400 font-bold">K</div>
+              <div>
+                <div class="text-white font-semibold text-sm">Kasun Perera</div>
+                <div class="text-white/40 text-xs">Alumni â€” Class of 2023</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- T3 -->
+        <div class="min-w-full px-4">
+          <div class="bg-white/10 backdrop-blur border border-white/10 rounded-3xl p-7 h-full">
+            <div class="flex text-gold-400 text-sm mb-4">â˜…â˜…â˜…â˜…â˜…</div>
+            <p class="text-white/80 text-sm leading-relaxed mb-5">"The swimming programme alone is worth it! My daughter went from being afraid of water to winning the inter-school championships in one year. The coaches are incredible."</p>
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-gold-500/30 flex items-center justify-center text-gold-400 font-bold">S</div>
+              <div>
+                <div class="text-white font-semibold text-sm">Samanthi Wickramasinghe</div>
+                <div class="text-white/40 text-xs">Parent of Grade 3 student</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- T4 -->
+        <div class="min-w-full px-4">
+          <div class="bg-white/10 backdrop-blur border border-white/10 rounded-3xl p-7 h-full">
+            <div class="flex text-gold-400 text-sm mb-4">â˜…â˜…â˜…â˜…â˜…</div>
+            <p class="text-white/80 text-sm leading-relaxed mb-5">"As a Korean parent living in Sri Lanka, I was worried about language and curriculum. All Nations made us feel so welcome. My son is thriving â€” both in English and Sinhala!"</p>
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-gold-500/30 flex items-center justify-center text-gold-400 font-bold">J</div>
+              <div>
+                <div class="text-white font-semibold text-sm">Ji-Yeon Kim</div>
+                <div class="text-white/40 text-xs">Parent of Grade 6 student</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- T5 -->
+        <div class="min-w-full px-4">
+          <div class="bg-white/10 backdrop-blur border border-white/10 rounded-3xl p-7 h-full">
+            <div class="flex text-gold-400 text-sm mb-4">â˜…â˜…â˜…â˜…â˜…</div>
+            <p class="text-white/80 text-sm leading-relaxed mb-5">"The Christian values here are genuine â€” not just on paper. My children have developed empathy, leadership and a real sense of purpose that I couldn't have taught them at home alone."</p>
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-gold-500/30 flex items-center justify-center text-gold-400 font-bold">R</div>
+              <div>
+                <div class="text-white font-semibold text-sm">Ranjini Silva</div>
+                <div class="text-white/40 text-xs">Parent of Grade 5 & Grade 10 students</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Controls -->
+    <div class="flex justify-center gap-3 mt-8">
+      <button onclick="prevTestimonial()" class="w-10 h-10 rounded-full border border-white/20 text-white hover:bg-white/10 transition-colors">
+        <i class="fas fa-chevron-left text-sm"></i>
+      </button>
+      <div class="flex gap-2 items-center" id="testimonialDots"></div>
+      <button onclick="nextTestimonial()" class="w-10 h-10 rounded-full border border-white/20 text-white hover:bg-white/10 transition-colors">
+        <i class="fas fa-chevron-right text-sm"></i>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• NEWS & EVENTS â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+<section id="news" class="py-24 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between mb-12 gap-4">
+      <div class="reveal">
+        <div class="text-gold-500 text-sm font-semibold tracking-widest uppercase mb-2">Stay Updated</div>
+        <h2 class="font-serif text-3xl md:text-4xl text-navy-700">News & Upcoming Events</h2>
+      </div>
+      <a href="#" class="reveal border-2 border-navy-600 text-navy-600 hover:bg-navy-600 hover:text-white font-semibold px-6 py-3 rounded-full transition-all text-sm flex-shrink-0">
+        View All News <i class="fas fa-arrow-right ml-2"></i>
+      </a>
+    </div>
+
+    <div class="grid lg:grid-cols-3 gap-8">
+      <!-- News 1 -->
+      <div class="reveal group">
+        <div class="rounded-2xl overflow-hidden bg-gradient-to-br from-navy-600 to-navy-800 h-48 flex items-center justify-center mb-4 relative">
+          <i class="fas fa-trophy text-gold-400 text-5xl opacity-60"></i>
+          <div class="absolute top-3 left-3 bg-gold-500 text-navy-800 text-xs font-bold px-3 py-1 rounded-full">Achievement</div>
+        </div>
+        <div class="text-xs text-gray-400 mb-2">15 June 2025</div>
+        <h3 class="font-semibold text-navy-700 text-lg mb-2 group-hover:text-gold-500 transition-colors">All Nations Students Win 6 Medals at Inter-School Athletics Meet</h3>
+        <p class="text-gray-500 text-sm leading-relaxed">Our track and field team brought home 6 medals including 2 gold at the Western Province Inter-School Athletics Championship...</p>
+        <a href="#" class="inline-flex items-center gap-1 text-navy-600 hover:text-gold-500 text-sm font-medium mt-3 transition-colors">Read more <i class="fas fa-arrow-right text-xs"></i></a>
+      </div>
+
+      <!-- News 2 -->
+      <div class="reveal group" style="transition-delay:0.1s">
+        <div class="rounded-2xl overflow-hidden bg-gradient-to-br from-green-600 to-green-800 h-48 flex items-center justify-center mb-4 relative">
+          <i class="fas fa-calendar-check text-white text-5xl opacity-60"></i>
+          <div class="absolute top-3 left-3 bg-green-400 text-green-900 text-xs font-bold px-3 py-1 rounded-full">Event</div>
+        </div>
+        <div class="text-xs text-gray-400 mb-2">28 June 2025</div>
+        <h3 class="font-semibold text-navy-700 text-lg mb-2 group-hover:text-gold-500 transition-colors">Annual Prize Giving & Cultural Night 2025</h3>
+        <p class="text-gray-500 text-sm leading-relaxed">Join us for our end-of-year Prize Giving Ceremony followed by an evening of cultural performances by our talented students...</p>
+        <a href="#" class="inline-flex items-center gap-1 text-navy-600 hover:text-gold-500 text-sm font-medium mt-3 transition-colors">Read more <i class="fas fa-arrow-right text-xs"></i></a>
+      </div>
+
+      <!-- News 3 -->
+      <div class="reveal group" style="transition-delay:0.2s">
+        <div class="rounded-2xl overflow-hidden bg-gradient-to-br from-purple-600 to-purple-800 h-48 flex items-center justify-center mb-4 relative">
+          <i class="fas fa-door-open text-white text-5xl opacity-60"></i>
+          <div class="absolute top-3 left-3 bg-purple-400 text-purple-900 text-xs font-bold px-3 py-1 rounded-full">Admissions</div>
+        </div>
+        <div class="text-xs text-gray-400 mb-2">5 July 2025</div>
+        <h3 class="font-semibold text-navy-700 text-lg mb-2 group-hover:text-gold-500 transition-colors">Open Day 2025 â€” Come Experience All Nations!</h3>
+        <p class="text-gray-500 text-sm leading-relaxed">Prospective families are invited to tour our campus, meet our teachers and learn about admissions for the 2025/2026 academic year...</p>
+        <a href="#" class="inline-flex items-center gap-1 text-navy-600 hover:text-gold-500 text-sm font-medium mt-3 transition-colors">Read more <i class="fas fa-arrow-right text-xs"></i></a>
+      </div>
+    </div>
+
+    <!-- Upcoming events mini list -->
+    <div class="mt-14 bg-navy-50 rounded-3xl p-8 reveal">
+      <h3 class="font-serif text-2xl text-navy-700 mb-6"><i class="fas fa-calendar text-gold-500 mr-2"></i> Upcoming School Events</h3>
+      <div class="grid md:grid-cols-2 gap-4">
+        <div class="flex items-center gap-4 bg-white rounded-xl p-4 border border-navy-100">
+          <div class="text-center bg-navy-600 text-white rounded-xl p-3 min-w-[3.5rem]">
+            <div class="text-xs uppercase text-gold-400">Jun</div>
+            <div class="font-bold text-xl">28</div>
+          </div>
+          <div>
+            <div class="font-medium text-navy-700">Prize Giving & Cultural Night</div>
+            <div class="text-gray-400 text-sm">6:00 PM Â· Main Auditorium</div>
+          </div>
+        </div>
+        <div class="flex items-center gap-4 bg-white rounded-xl p-4 border border-navy-100">
+          <div class="text-center bg-navy-600 text-white rounded-xl p-3 min-w-[3.5rem]">
+            <div class="text-xs uppercase text-gold-400">Jul</div>
+            <div class="font-bold text-xl">5</div>
+          </div>
+          <div>
+            <div class="font-medium text-navy-700">Open Day 2025</div>
+            <div class="text-gray-400 text-sm">9:00 AM â€“ 1:00 PM Â· School Campus</div>
+          </div>
+        </div>
+        <div class="flex items-center gap-4 bg-white rounded-xl p-4 border border-navy-100">
+          <div class="text-center bg-gold-500 text-navy-800 rounded-xl p-3 min-w-[3.5rem]">
+            <div class="text-xs uppercase text-navy-700">Jul</div>
+            <div class="font-bold text-xl">15</div>
+          </div>
+          <div>
+            <div class="font-medium text-navy-700">Term 3 Begins â€” 2025/2026</div>
+            <div class="text-gray-400 text-sm">First day for all new students</div>
+          </div>
+        </div>
+        <div class="flex items-center gap-4 bg-white rounded-xl p-4 border border-navy-100">
+          <div class="text-center bg-navy-600 text-white rounded-xl p-3 min-w-[3.5rem]">
+            <div class="text-xs uppercase text-gold-400">Aug</div>
+            <div class="font-bold text-xl">12</div>
+          </div>
+          <div>
+            <div class="font-medium text-navy-700">Swimming Gala 2025</div>
+            <div class="text-gray-400 text-sm">All day Â· School Pool</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• ADMISSIONS â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+<section id="admissions" class="py-24 bg-gray-50">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid lg:grid-cols-2 gap-16 items-start">
+
+      <!-- Left info -->
+      <div>
+        <div class="text-gold-500 text-sm font-semibold tracking-widest uppercase mb-3 reveal">Admissions 2025 / 2026</div>
+        <h2 class="font-serif text-3xl md:text-4xl text-navy-700 mb-6 leading-tight reveal">Begin Your Child's Journey With Us</h2>
+        <p class="text-gray-500 leading-relaxed mb-8 reveal">We welcome students from all backgrounds who are ready to learn, grow and contribute. Our admissions process is simple and transparent.</p>
+
+        <!-- Timeline -->
+        <div class="space-y-6 mb-10 reveal">
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="font-semibold text-navy-700">1. Submit Enquiry</div>
+            <div class="text-gray-500 text-sm mt-1">Fill out the form or WhatsApp us. We'll be in touch within 24 hours.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="font-semibold text-navy-700">2. Campus Visit</div>
+            <div class="text-gray-500 text-sm mt-1">Tour the school, meet teachers, and see our facilities first-hand.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="font-semibold text-navy-700">3. Assessment</div>
+            <div class="text-gray-500 text-sm mt-1">A friendly, stress-free assessment to place your child in the right class.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="font-semibold text-navy-700">4. Enrolment</div>
+            <div class="text-gray-500 text-sm mt-1">Complete registration, submit documents and secure your child's place.</div>
+          </div>
+        </div>
+
+        <!-- What to bring -->
+        <div class="bg-navy-50 rounded-2xl p-6 border border-navy-100 reveal">
+          <h4 class="font-semibold text-navy-700 mb-3"><i class="fas fa-file-alt text-gold-500 mr-2"></i> Documents Required</h4>
+          <ul class="space-y-2 text-sm text-gray-600">
+            <li class="flex items-center gap-2"><i class="fas fa-circle text-gold-400 text-xs"></i> Birth Certificate (original + photocopy)</li>
+            <li class="flex items-center gap-2"><i class="fas fa-circle text-gold-400 text-xs"></i> Last school report / progress card</li>
+            <li class="flex items-center gap-2"><i class="fas fa-circle text-gold-400 text-xs"></i> National ID / Passport of parent/guardian</li>
+            <li class="flex items-center gap-2"><i class="fas fa-circle text-gold-400 text-xs"></i> 4 passport-size photographs</li>
+            <li class="flex items-center gap-2"><i class="fas fa-circle text-gold-400 text-xs"></i> Vaccination records (Pre-Primary)</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Right form -->
+      <div class="bg-white rounded-3xl shadow-xl p-5 sm:p-8 border border-gray-100 reveal">
+        <div class="text-center mb-6">
+          <h3 class="font-serif text-2xl text-navy-700">Admission Enquiry</h3>
+          <p class="text-gray-400 text-sm mt-1">We'll contact you within 24 hours</p>
+        </div>
+
+        <!-- Step indicators -->
+        <div class="flex items-center justify-center gap-2 mb-8" id="stepIndicators">
+          <div class="step-dot active w-8 h-8 rounded-full flex items-center justify-center text-sm border-2 border-gold-500 text-gold-600">1</div>
+          <div class="h-px w-8 bg-gray-200"></div>
+          <div class="step-dot w-8 h-8 rounded-full flex items-center justify-center text-sm border-2 border-gray-200 text-gray-400">2</div>
+          <div class="h-px w-8 bg-gray-200"></div>
+          <div class="step-dot w-8 h-8 rounded-full flex items-center justify-center text-sm border-2 border-gray-200 text-gray-400">3</div>
+        </div>
+
+        <form id="admissionForm">
+          <!-- Step 1 -->
+          <div class="form-step active" id="step1">
+            <div class="space-y-4">
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Parent / Guardian Name *</label>
+                <input type="text" placeholder="e.g. Kasun Perera" class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-navy-500 focus:border-transparent transition" />
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Phone Number *</label>
+                <input type="tel" placeholder="+94 77 123 4567" class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-navy-500 focus:border-transparent transition" />
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                <input type="email" placeholder="your@email.com" class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-navy-500 focus:border-transparent transition" />
+              </div>
+            </div>
+            <button type="button" onclick="nextStep(2)" class="w-full mt-6 bg-navy-600 hover:bg-navy-700 text-white font-semibold py-3.5 rounded-xl transition-all text-sm">
+              Next: Child Details <i class="fas fa-arrow-right ml-2"></i>
+            </button>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="form-step" id="step2">
+            <div class="space-y-4">
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Child's Full Name *</label>
+                <input type="text" placeholder="e.g. Anika Perera" class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-navy-500 focus:border-transparent transition" />
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Date of Birth *</label>
+                <input type="date" class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-navy-500 focus:border-transparent transition" />
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Programme Applying For *</label>
+                <select class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-navy-500 focus:border-transparent transition bg-white">
+                  <option value="">Select a programme</option>
+                  <option>Pre-Primary (Ages 3â€“5)</option>
+                  <option>Primary â€” Grade 1</option>
+                  <option>Primary â€” Grade 2</option>
+                  <option>Primary â€” Grade 3</option>
+                  <option>Primary â€” Grade 4</option>
+                  <option>Primary â€” Grade 5</option>
+                  <option>Secondary â€” Grade 6</option>
+                  <option>Secondary â€” Grade 7</option>
+                  <option>Secondary â€” Grade 8</option>
+                  <option>Secondary â€” Grade 9</option>
+                  <option>Secondary â€” Grade 10</option>
+                  <option>Secondary â€” Grade 11 (O/L)</option>
+                </select>
+              </div>
+            </div>
+            <div class="flex gap-3 mt-6">
+              <button type="button" onclick="prevStep(1)" class="flex-1 border border-gray-200 text-gray-600 hover:bg-gray-50 font-medium py-3.5 rounded-xl transition-all text-sm">
+                <i class="fas fa-arrow-left mr-2"></i> Back
+              </button>
+              <button type="button" onclick="nextStep(3)" class="flex-1 bg-navy-600 hover:bg-navy-700 text-white font-semibold py-3.5 rounded-xl transition-all text-sm">
+                Next <i class="fas fa-arrow-right ml-2"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="form-step" id="step3">
+            <div class="space-y-4">
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Current / Previous School</label>
+                <input type="text" placeholder="School name (if applicable)" class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-navy-500 focus:border-transparent transition" />
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Preferred Start Date *</label>
+                <select class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-navy-500 focus:border-transparent transition bg-white">
+                  <option>Term 3 â€“ July 2025</option>
+                  <option>Term 1 â€“ January 2026</option>
+                  <option>Term 2 â€“ April 2026</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Additional Notes</label>
+                <textarea rows="3" placeholder="Any special requirements or questions?" class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-navy-500 focus:border-transparent transition resize-none"></textarea>
+              </div>
+            </div>
+            <div class="flex gap-3 mt-6">
+              <button type="button" onclick="prevStep(2)" class="flex-1 border border-gray-200 text-gray-600 hover:bg-gray-50 font-medium py-3.5 rounded-xl transition-all text-sm">
+                <i class="fas fa-arrow-left mr-2"></i> Back
+              </button>
+              <button type="button" onclick="submitForm()" class="flex-1 bg-gold-500 hover:bg-gold-400 text-navy-800 font-bold py-3.5 rounded-xl transition-all text-sm">
+                Submit Enquiry <i class="fas fa-paper-plane ml-2"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Success -->
+          <div class="form-step" id="stepSuccess">
+            <div class="text-center py-8">
+              <div class="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-4">
+                <i class="fas fa-check-circle text-green-500 text-3xl"></i>
+              </div>
+              <h3 class="font-serif text-2xl text-navy-700 mb-2">Enquiry Submitted!</h3>
+              <p class="text-gray-500 text-sm mb-6">Thank you! Our admissions team will contact you within 24 hours. Meanwhile, feel free to WhatsApp us for any urgent queries.</p>
+              <a href="https://wa.me/94771234567" target="_blank" class="inline-flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white font-semibold px-6 py-3 rounded-xl transition-all text-sm">
+                <i class="fab fa-whatsapp text-lg"></i> WhatsApp Us Now
+              </a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• FAQ â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+<section class="py-24 bg-white">
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12 reveal">
+      <div class="text-gold-500 text-sm font-semibold tracking-widest uppercase mb-3">FAQ</div>
+      <h2 class="font-serif text-3xl md:text-4xl text-navy-700">Frequently Asked Questions</h2>
+    </div>
+
+    <div class="space-y-3 reveal">
+      <div class="faq-item border border-gray-100 rounded-2xl overflow-hidden shadow-sm">
+        <button class="faq-toggle w-full flex items-center justify-between p-5 text-left hover:bg-gray-50 transition-colors" onclick="toggleFaq(this)">
+          <span class="font-medium text-navy-700">What curriculum does All Nations follow?</span>
+          <i class="fas fa-plus text-gold-500 transition-transform"></i>
+        </button>
+        <div class="faq-answer">
+          <div class="px-5 pb-5 text-gray-500 text-sm leading-relaxed">All Nations International School follows the Cambridge International curriculum for Primary and Secondary levels. This globally recognised qualification prepares students for universities both in Sri Lanka and internationally.</div>
+        </div>
+      </div>
+
+      <div class="faq-item border border-gray-100 rounded-2xl overflow-hidden shadow-sm">
+        <button class="faq-toggle w-full flex items-center justify-between p-5 text-left hover:bg-gray-50 transition-colors" onclick="toggleFaq(this)">
+          <span class="font-medium text-navy-700">What is the medium of instruction?</span>
+          <i class="fas fa-plus text-gold-500 transition-transform"></i>
+        </button>
+        <div class="faq-answer">
+          <div class="px-5 pb-5 text-gray-500 text-sm leading-relaxed">The primary medium of instruction is English. Students also study Sinhala and Tamil as part of the national curriculum requirements. Korean language classes are also offered as an elective.</div>
+        </div>
+      </div>
+
+      <div class="faq-item border border-gray-100 rounded-2xl overflow-hidden shadow-sm">
+        <button class="faq-toggle w-full flex items-center justify-between p-5 text-left hover:bg-gray-50 transition-colors" onclick="toggleFaq(this)">
+          <span class="font-medium text-navy-700">Is the school only for Christian students?</span>
+          <i class="fas fa-plus text-gold-500 transition-transform"></i>
+        </button>
+        <div class="faq-answer">
+          <div class="px-5 pb-5 text-gray-500 text-sm leading-relaxed">Not at all! All Nations welcomes students and families from all religious and cultural backgrounds. While the school is founded on Christian values such as honesty, kindness and servant leadership, students of all faiths are warmly welcomed.</div>
+        </div>
+      </div>
+
+      <div class="faq-item border border-gray-100 rounded-2xl overflow-hidden shadow-sm">
+        <button class="faq-toggle w-full flex items-center justify-between p-5 text-left hover:bg-gray-50 transition-colors" onclick="toggleFaq(this)">
+          <span class="font-medium text-navy-700">Are school fees available on request?</span>
+          <i class="fas fa-plus text-gold-500 transition-transform"></i>
+        </button>
+        <div class="faq-answer">
+          <div class="px-5 pb-5 text-gray-500 text-sm leading-relaxed">Yes. We provide a full fee structure during your campus visit or upon request via WhatsApp/email. Fees vary by grade level, and payment plan options are available. We believe in full transparency.</div>
+        </div>
+      </div>
+
+      <div class="faq-item border border-gray-100 rounded-2xl overflow-hidden shadow-sm">
+        <button class="faq-toggle w-full flex items-center justify-between p-5 text-left hover:bg-gray-50 transition-colors" onclick="toggleFaq(this)">
+          <span class="font-medium text-navy-700">Does the school provide transport?</span>
+          <i class="fas fa-plus text-gold-500 transition-transform"></i>
+        </button>
+        <div class="faq-answer">
+          <div class="px-5 pb-5 text-gray-500 text-sm leading-relaxed">Yes, we have school buses serving Ganemulla, Gampaha, Kadawatha, Kiribathgoda and surrounding areas. Please contact admissions for the current routes and availability for your area.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• CONTACT â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+<section id="contact" class="py-24 bg-navy-600">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid lg:grid-cols-2 gap-16 items-start">
+
+      <!-- Left -->
+      <div class="text-white">
+        <div class="text-gold-400 text-sm font-semibold tracking-widest uppercase mb-3 reveal">Get In Touch</div>
+        <h2 class="font-serif text-3xl md:text-4xl text-white mb-6 reveal">We'd Love to Hear From You</h2>
+        <p class="text-white/60 leading-relaxed mb-10 reveal">Whether you have a question about admissions, want to book a campus tour, or just want to say hello â€” our team is ready to help.</p>
+
+        <div class="space-y-6 reveal">
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center flex-shrink-0">
+              <i class="fas fa-map-marker-alt text-gold-400"></i>
+            </div>
+            <div>
+              <div class="font-semibold text-white">Address</div>
+              <div class="text-white/60 text-sm mt-0.5">All Nations International School<br>Ganemulla, Western Province, Sri Lanka</div>
+            </div>
+          </div>
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center flex-shrink-0">
+              <i class="fas fa-phone text-gold-400"></i>
+            </div>
+            <div>
+              <div class="font-semibold text-white">Phone</div>
+              <div class="text-white/60 text-sm mt-0.5">+94 11 XXX XXXX<br>+94 77 XXX XXXX (WhatsApp)</div>
+            </div>
+          </div>
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center flex-shrink-0">
+              <i class="fas fa-envelope text-gold-400"></i>
+            </div>
+            <div>
+              <div class="font-semibold text-white">Email</div>
+              <div class="text-white/60 text-sm mt-0.5">admissions@allnations.lk<br>info@allnations.lk</div>
+            </div>
+          </div>
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center flex-shrink-0">
+              <i class="fas fa-clock text-gold-400"></i>
+            </div>
+            <div>
+              <div class="font-semibold text-white">Office Hours</div>
+              <div class="text-white/60 text-sm mt-0.5">Mon â€“ Fri: 7:30 AM â€“ 4:30 PM<br>Sat: 8:00 AM â€“ 12:00 PM</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Social -->
+        <div class="flex gap-4 mt-10 reveal">
+          <a href="#" class="w-10 h-10 rounded-xl bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-colors">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="#" class="w-10 h-10 rounded-xl bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-colors">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="#" class="w-10 h-10 rounded-xl bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-colors">
+            <i class="fab fa-youtube"></i>
+          </a>
+          <a href="https://wa.me/94771234567" class="w-10 h-10 rounded-xl bg-green-500/80 hover:bg-green-500 flex items-center justify-center text-white transition-colors">
+            <i class="fab fa-whatsapp"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Right map -->
+      <div class="reveal">
+        <div class="rounded-3xl overflow-hidden border-4 border-white/10 shadow-2xl h-80 bg-navy-800 flex items-center justify-center">
+          <div class="text-center text-white/50">
+            <i class="fas fa-map-marked-alt text-6xl text-gold-400/50 mb-3 block"></i>
+            <div class="text-sm">Interactive map would be embedded here</div>
+            <a href="https://maps.google.com/?q=Ganemulla+Sri+Lanka" target="_blank" class="inline-flex items-center gap-2 mt-4 text-gold-400 hover:text-gold-300 text-sm transition-colors">
+              <i class="fas fa-external-link-alt"></i> Open in Google Maps
+            </a>
+          </div>
+        </div>
+
+        <!-- Quick contact card -->
+        <div class="bg-gold-500 rounded-2xl p-6 mt-6">
+          <div class="flex items-center gap-3 mb-3">
+            <i class="fab fa-whatsapp text-3xl text-navy-800"></i>
+            <div>
+              <div class="font-bold text-navy-800">Chat with Admissions</div>
+              <div class="text-navy-700 text-sm">Typically replies within minutes</div>
+            </div>
+          </div>
+          <a href="https://wa.me/94771234567?text=Hello%2C%20I%27d%20like%20to%20enquire%20about%20admissions%20at%20All%20Nations%20International%20School." target="_blank" class="block w-full bg-navy-800 hover:bg-navy-700 text-white font-semibold py-3 rounded-xl text-center text-sm transition-all">
+            Start WhatsApp Chat <i class="fab fa-whatsapp ml-2"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• FOOTER â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+<footer class="bg-navy-800 py-12">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid md:grid-cols-4 gap-10 mb-10">
+      <!-- Brand -->
+      <div class="md:col-span-2">
+        <div class="flex items-center gap-3 mb-4">
+          <img src="logo.png" alt="All Nations International School Logo" class="w-12 h-12 object-contain" />
+          <div>
+            <div class="text-white font-serif text-lg font-bold leading-none">All Nations</div>
+            <div class="text-gold-400 text-xs tracking-widest">International School</div>
+          </div>
+        </div>
+        <p class="text-white/40 text-sm leading-relaxed max-w-sm">Nurturing young minds through creative, high-standard education rooted in Christian values, international excellence, and community.</p>
+      </div>
+
+      <!-- Quick links -->
+      <div>
+        <div class="text-white font-semibold mb-4 text-sm">Quick Links</div>
+        <ul class="space-y-2 text-sm text-white/50">
+          <li><a href="#about"      class="hover:text-gold-400 transition-colors">About Us</a></li>
+          <li><a href="#academics"  class="hover:text-gold-400 transition-colors">Academics</a></li>
+          <li><a href="#facilities" class="hover:text-gold-400 transition-colors">Facilities</a></li>
+          <li><a href="#news"       class="hover:text-gold-400 transition-colors">News & Events</a></li>
+          <li><a href="#admissions" class="hover:text-gold-400 transition-colors">Admissions</a></li>
+          <li><a href="#contact"    class="hover:text-gold-400 transition-colors">Contact Us</a></li>
+        </ul>
+      </div>
+
+      <!-- Programmes -->
+      <div>
+        <div class="text-white font-semibold mb-4 text-sm">Programmes</div>
+        <ul class="space-y-2 text-sm text-white/50">
+          <li><a href="#academics" class="hover:text-gold-400 transition-colors">Pre-Primary (Ages 3â€“5)</a></li>
+          <li><a href="#academics" class="hover:text-gold-400 transition-colors">Primary (Grades 1â€“5)</a></li>
+          <li><a href="#academics" class="hover:text-gold-400 transition-colors">Secondary (Grades 6â€“11)</a></li>
+          <li><a href="#" class="hover:text-gold-400 transition-colors">After School Activities</a></li>
+          <li><a href="#" class="hover:text-gold-400 transition-colors">eSchool Portal</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="border-t border-white/10 pt-6 flex flex-col md:flex-row justify-between items-center gap-4">
+      <div class="text-white/30 text-xs text-center">Â© 2025 All Nations International School, Ganemulla, Sri Lanka. All rights reserved.</div>
+      <div class="text-white/30 text-xs">Designed with â¤ï¸ for All Nations</div>
+    </div>
+  </div>
+</footer>
+
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• FLOATING WIDGETS â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+
+<!-- WhatsApp -->
+<a href="https://wa.me/94771234567?text=Hello%2C%20I%27d%20like%20to%20enquire%20about%20All%20Nations%20International%20School." target="_blank"
+   class="wa-btn fixed bottom-6 right-6 w-14 h-14 bg-green-500 hover:bg-green-600 text-white rounded-full flex items-center justify-center shadow-xl z-50 transition-all hover:scale-110">
+  <i class="fab fa-whatsapp text-2xl"></i>
+</a>
+
+<!-- Back to top -->
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})"
+   class="fixed bottom-24 right-6 w-11 h-11 bg-navy-600 hover:bg-navy-700 text-white rounded-full flex items-center justify-center shadow-lg z-50 transition-all hover:scale-110">
+  <i class="fas fa-arrow-up text-sm"></i>
+</button>
+
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• SCRIPTS â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+<script>
+// â”€â”€ Navbar scroll â”€â”€
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 50) navbar.classList.add('scrolled');
+  else navbar.classList.remove('scrolled');
+
+  // back to top
+  const btn = document.getElementById('back-to-top');
+  if (window.scrollY > 400) btn.classList.add('show');
+  else btn.classList.remove('show');
+});
+
+// â”€â”€ Mobile menu â”€â”€
+document.getElementById('menu-toggle').addEventListener('click', () => {
+  const menu = document.getElementById('mobile-menu');
+  const icon = document.getElementById('menu-icon');
+  menu.classList.toggle('hidden');
+  icon.className = menu.classList.contains('hidden') ? 'fas fa-bars' : 'fas fa-times';
+});
+function closeMobileMenu() {
+  document.getElementById('mobile-menu').classList.add('hidden');
+  document.getElementById('menu-icon').className = 'fas fa-bars';
+}
+
+// â”€â”€ Counter animation â”€â”€
+function animateCounter(el, target, duration = 1800) {
+  let start = 0;
+  const step = target / (duration / 16);
+  const timer = setInterval(() => {
+    start += step;
+    if (start >= target) { el.textContent = target; clearInterval(timer); }
+    else el.textContent = Math.floor(start);
+  }, 16);
+}
+const counterObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting && !e.target.dataset.done) {
+      e.target.dataset.done = 1;
+      animateCounter(e.target, parseInt(e.target.dataset.target));
+    }
+  });
+}, { threshold: 0.5 });
+document.querySelectorAll('.counter').forEach(el => counterObserver.observe(el));
+
+// â”€â”€ Scroll reveal â”€â”€
+const revealObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+// â”€â”€ Testimonial slider â”€â”€
+let currentSlide = 0;
+const track = document.getElementById('testimonialTrack');
+const slides = track.children;
+const total = slides.length;
+const dotsContainer = document.getElementById('testimonialDots');
+
+// Build dots
+for (let i = 0; i < total; i++) {
+  const d = document.createElement('button');
+  d.className = `w-2 h-2 rounded-full transition-all ${i===0 ? 'bg-gold-400 w-4' : 'bg-white/30'}`;
+  d.onclick = () => goToSlide(i);
+  dotsContainer.appendChild(d);
+}
+
+function goToSlide(n) {
+  currentSlide = (n + total) % total;
+  track.style.transform = `translateX(-${currentSlide * 100 / total}%)`;
+  // Adjust for responsive
+  updateDots();
+}
+function updateDots() {
+  Array.from(dotsContainer.children).forEach((d, i) => {
+    d.className = `rounded-full transition-all ${i===currentSlide ? 'bg-gold-400 w-4 h-2' : 'bg-white/30 w-2 h-2'}`;
+  });
+}
+function nextTestimonial() { goToSlide(currentSlide + 1); }
+function prevTestimonial() { goToSlide(currentSlide - 1); }
+// Auto-play
+setInterval(nextTestimonial, 5000);
+
+// â”€â”€ Multi-step form â”€â”€
+let currentFormStep = 1;
+function nextStep(step) {
+  document.getElementById(`step${currentFormStep}`).classList.remove('active');
+  currentFormStep = step;
+  document.getElementById(`step${step}`).classList.add('active');
+  updateStepDots(step);
+}
+function prevStep(step) {
+  document.getElementById(`step${currentFormStep}`).classList.remove('active');
+  currentFormStep = step;
+  document.getElementById(`step${step}`).classList.add('active');
+  updateStepDots(step);
+}
+function submitForm() {
+  document.getElementById(`step${currentFormStep}`).classList.remove('active');
+  document.getElementById('stepSuccess').classList.add('active');
+  updateStepDots(4);
+}
+function updateStepDots(active) {
+  const dots = document.querySelectorAll('#stepIndicators .step-dot');
+  dots.forEach((d, i) => {
+    const n = i + 1;
+    d.classList.remove('active','done');
+    if (n < active) { d.classList.add('done'); d.innerHTML = '<i class="fas fa-check text-xs"></i>'; }
+    else if (n === active) { d.classList.add('active'); d.textContent = n; }
+    else { d.textContent = n; }
+  });
+}
+
+// â”€â”€ FAQ accordion â”€â”€
+function toggleFaq(btn) {
+  const answer = btn.nextElementSibling;
+  const icon = btn.querySelector('i');
+  const isOpen = answer.classList.contains('open');
+  // close all
+  document.querySelectorAll('.faq-answer').forEach(a => a.classList.remove('open'));
+  document.querySelectorAll('.faq-toggle i').forEach(i => { i.classList.remove('fa-minus'); i.classList.add('fa-plus'); i.style.transform = 'rotate(0deg)'; });
+  if (!isOpen) {
+    answer.classList.add('open');
+    icon.classList.remove('fa-plus');
+    icon.classList.add('fa-minus');
+    icon.style.transform = 'rotate(180deg)';
+  }
+}
+</script>
+
+</body>
+</html>
+
